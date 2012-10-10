@@ -1,4 +1,5 @@
 from islandoraUtils.fedoraLib import get_datastream_as_file, update_datastream
+from shutil import rmtree
 from islandoraUtils import DSConverter as DSC
 from plugin_manager import IslandoraListenerPlugin
 import pprint
