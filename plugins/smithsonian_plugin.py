@@ -29,7 +29,8 @@ class smithsonian_plugin(IslandoraListenerPlugin):
                 DSC.create_csv(obj, 'OBJ', 'CSV')
             elif obj['OBJ'].mimeType == 'text/csv':
                 directory, file = get_datastream_as_file(obj, 'OBJ', "document")
-                update_datastream(obj, 'CSV', directory + '/' + file, label='CSV Generated Metadata', mimeType='text/csv')
+                update_datastream(obj, 'CSV', directory + '/' + file, label='CSV', mimeType='text/csv')
+                rmtree(directory, ignore_errors=True)
 
     def islandoraMessage(self, method, message, client):
         #print it and log it
