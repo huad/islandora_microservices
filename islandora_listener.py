@@ -148,8 +148,8 @@ class IslandoraListener(ConnectionListener):
                             pass
             except TypeError:
                 '''
-                    Excepting the TypeError because a production environments
-                    were experiencing unexplained issues here. obj was not
+                    Excepting the TypeError because a production environment
+                    was experiencing unexplained issues here. obj was not
                     iterable.
                     @todo
                         Remove when the error has been explained/fixed.
