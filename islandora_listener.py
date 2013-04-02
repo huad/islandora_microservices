@@ -137,15 +137,24 @@ class IslandoraListener(ConnectionListener):
 
     def _get_fedora_content_models(self, obj):
             content_models = []
-
-            if obj != None and 'RELS-EXT' in obj:
-                ds = obj['RELS-EXT']
-                for elem in ds[NS.fedoramodel.hasModel]:
-                    cm = elem['value'].split('/')
-                    try:
-                        content_models.append(cm[1])
-                    except IndexError:
-                        pass
+            try:
+                if obj != None and 'RELS-EXT' in obj:
+                    ds = obj['RELS-EXT']
+                    for elem in ds[NS.fedoramodel.hasModel]:
+                        cm = elem['value'].split('/')
+                        try:
+                            content_models.append(cm[1])
+                        except IndexError:
+                            pass
+            except TypeError:
+                '''
+                    Excepting the TypeError because a production environment
+                    was experiencing unexplained issues here. obj was not
+                    iterable.
+                    @todo
+                        Remove when the error has been explained/fixed.
+                '''
+                logger.exception('TypeError in _get_fedora_content_models!')
 
             return content_models
 
